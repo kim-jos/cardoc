@@ -3,7 +3,8 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, BadRequestException,
 import { TrimsService } from './trims.service';
 import { CreateTrimDto } from './dto/create-trim.dto';
 import { UpdateTrimDto } from './dto/update-trim.dto';
-
+import { ApiTags } from '@nestjs/swagger';
+@ApiTags('자동차 종 (TRIMS) API')
 @Controller('trims')
 export class TrimsController {
   constructor(private readonly trimsService: TrimsService) { }
