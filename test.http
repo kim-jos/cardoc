@@ -1,0 +1,65 @@
+### Create User
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "userId": "test2",
+  "password": "testtest2"
+}
+
+### Search Tire Info
+GET http://localhost:3000/trims
+Content-Type: application/json
+
+{
+  "userId": "test1"
+}
+
+### Save Tire Info
+POST http://localhost:3000/trims
+Content-Type: application/json
+
+{
+  "data": [
+    {
+      "userId": "test1",
+      "trimId": 5000,
+      "tire": {
+        "type": "front",
+        "wheelWidth": 10,
+        "wheelFlatness": 10,
+        "wheelSize": 10
+      }
+    },
+    {
+      "userId": "test1",
+      "trimId": 5000,
+      "tire": {
+        "type": "rear",
+        "wheelWidth": 20,
+        "wheelFlatness": 20,
+        "wheelSize": 20
+      }
+    },
+    {
+      "userId": "test2",
+      "trimId": 9000,
+      "tire": {
+        "type": "front",
+        "wheelWidth": 10,
+        "wheelFlatness": 10,
+        "wheelSize": 10
+      }
+    },
+    {
+      "userId": "test2",
+      "trimId": 9000,
+      "tire": {
+        "type": "rear",
+        "wheelWidth": 20,
+        "wheelFlatness": 20,
+        "wheelSize": 20
+      }
+    }
+  ]
+}

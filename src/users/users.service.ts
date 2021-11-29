@@ -15,14 +15,14 @@ export class UsersService {
   constructor(
     @InjectRepository(User)
     private readonly usersRepository: UsersRepository,
-  ) {}
+  ) { }
 
   async create(createUserDto: CreateUserDto): Promise<number> {
     const existingUser = await this.usersRepository.findOne({
       userId: createUserDto.userId,
     });
 
-    if (existingUser) throw new ForbiddenException();
+    if (existingUser) throw new ForbiddenException("User already exists");
 
     const hash = await bcrypt.hash(createUserDto.password, 10);
     const user = this.usersRepository.create({

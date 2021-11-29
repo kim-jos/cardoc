@@ -6,21 +6,34 @@ import { AuthController } from './auth/auth.controller';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { join } from 'path';
+import { TiresModule } from './tires/tires.module';
+import { TrimsModule } from './trims/trims.module';
+import { getConnectionOptions } from 'typeorm';
+import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'sqlite',
-      database: 'database.db',
-      synchronize: true,
-      logging: false,
-      entities: [join(__dirname, '**', '*.entity.{ts,js}')],
+    TypeOrmModule.forRootAsync({
+      useFactory: async () =>
+        Object.assign(await getConnectionOptions(), {
+          autoLoadEntities: true,
+          namingStrategy: new SnakeNamingStrategy(),
+        }),
     }),
+    // TypeOrmModule.forFeature([join(__dirname, '**', '*.entity.{ts,js}')]),
+    // TypeOrmModule.forRoot({
+    //   type: 'sqlite',
+    //   database: 'database.db',
+    //   synchronize: true,
+    //   logging: false,
+    //   entities: [join(__dirname, '**', '*.entity.{ts,js}')],
+    // }),
     AuthModule,
     UsersModule,
+    TiresModule,
+    TrimsModule,
   ],
   controllers: [AppController, AuthController],
   providers: [AppService, AuthService],
 })
-export class AppModule {}
+export class AppModule { }
