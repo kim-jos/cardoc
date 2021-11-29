@@ -105,7 +105,7 @@ JWT를 사용해 로그인 기능을 만들었습니다. 자동차 및 타이어
 
 ## 📖 API Document
 
-[🔗 Swagger ](http://13.125.0.161:3015/api/)
+[🔗 Swagger ](http://ec2-15-165-204-252.ap-northeast-2.compute.amazonaws.com:3000/api/)
 
 ### API Test 방법
 
