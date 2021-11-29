@@ -63,6 +63,9 @@
 
 ![image](https://user-images.githubusercontent.com/77760709/143807206-252d2dff-46e8-44b2-bd9d-ab68e4ed7151.png)
 
+테이블을 User, Trim, Tire로 구분해서 만들었습니다. 각 유저는 하나 이상의 Trim을 보유할 수 있고 각 Trim도 하나 이상의 Tire를 보유합니다. Trim과 Tire의 관계설정을 OneToMany로 했는데 생각해보니 Tire의 규격은 제한적이라서 ManyToMany의 관계가 확장성에 있어 더 의미 있었을 것 같습니다 (Trim도 User의 관계에 있어서 차가 아니라 차종 이라면 비슷하게 ManyToMany가 나았을 것 같습니다). 또 3 테이블로 구분했던 이유는 차 종을 타이어가 많이 변결될 수 있기 때문에 Tire 내용을 Trim에 넣지 않고 구분했습니다.
+
+
 </br>
 </br>
 
