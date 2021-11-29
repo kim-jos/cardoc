@@ -109,7 +109,24 @@ JWT를 사용해 로그인 기능을 만들었습니다. 자동차 및 타이어
 
 ### API Test 방법
 
-## 🪄 설치 및 실행 방법
+데이터를 저장할 때 5개 이상 가능해야해서 data라는 key 값에 5개의 정보를 배열안에 넣었습니다. 
+해당 프로젝트 **test.http** 파일을 보면 더 구체적으로 볼 수 있습니다.
+
+Trim를 test할 때는 Body가 아래와 같습니다:
+{
+  data: [
+    {
+        "userId": "test1",
+      "trimId": 5000,
+      "tire": {
+        "type": "front",
+        "wheelWidth": 10,
+        "wheelFlatness": 10,
+        "wheelSize": 10
+      }
+    }
+  ]
+}
 
 ### 설치
 
