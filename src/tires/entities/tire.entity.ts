@@ -1,10 +1,6 @@
 import { Trim } from './../../trims/entities/trim.entity';
-import { Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
-enum TireType {
-  front = 'front',
-  rear = 'rear'
-}
 
 @Entity()
 export class Tire {

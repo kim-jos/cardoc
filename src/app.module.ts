@@ -1,3 +1,4 @@
+import { JwtService } from '@nestjs/jwt';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -20,20 +21,12 @@ import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
           namingStrategy: new SnakeNamingStrategy(),
         }),
     }),
-    // TypeOrmModule.forFeature([join(__dirname, '**', '*.entity.{ts,js}')]),
-    // TypeOrmModule.forRoot({
-    //   type: 'sqlite',
-    //   database: 'database.db',
-    //   synchronize: true,
-    //   logging: false,
-    //   entities: [join(__dirname, '**', '*.entity.{ts,js}')],
-    // }),
     AuthModule,
     UsersModule,
     TiresModule,
     TrimsModule,
   ],
   controllers: [AppController, AuthController],
-  providers: [AppService, AuthService],
+  providers: [AppService],
 })
 export class AppModule { }

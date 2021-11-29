@@ -5,10 +5,9 @@ import { User } from './../users/entities/user.entity';
 import { Trim } from './entities/trim.entity';
 import { ForbiddenException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateTrimDto } from './dto/create-trim.dto';
 import { UpdateTrimDto } from './dto/update-trim.dto';
 import { TrimsRepository } from './trims.repository';
-
+import { CreateTrimDto } from './dto/create-trim.dto';
 @Injectable()
 export class TrimsService {
   constructor(
@@ -38,9 +37,7 @@ export class TrimsService {
       const savedTire = await this.tireRepository.save(newTire);
 
       // connect tire to trim
-      let trim = await this.trimsRepository.findOne({
-        trimId: createTrimDto[i].trimId
-      })
+      let trim = await this.trimsRepository.findOne({ trimId: createTrimDto[i].trimId })
       if (!trim) {
         trim = await this.trimsRepository.create({
           trimId: createTrimDto[i].trimId,
@@ -53,9 +50,7 @@ export class TrimsService {
       await this.trimsRepository.save(trim);
 
       // connect trim to user
-      const trims = await this.trimsRepository.find({
-        userId: user
-      })
+      const trims = await this.trimsRepository.find({ userId: user })
       user.trim = trims;
       user.trim.push(trim);
       await this.userRepository.save({ ...user });
@@ -64,8 +59,8 @@ export class TrimsService {
     return "Insert finished"
   }
 
-  async findOne(userName: { userId: string }) {
-    const userId = userName.userId;
+  async findOne(userId: string) {
+    const tireList = [];
     const user = await this.userRepository.findOne({ userId })
     if (!user) throw new ForbiddenException('User does not exist')
 
@@ -73,8 +68,9 @@ export class TrimsService {
 
     for (let i = 0; i < trim.length; i++) {
       const tire = await this.tireRepository.find({ trim: trim[i] });
-      console.log('tire', tire)
+      tireList.push(tire);
     }
+    return tireList;
   }
 
   update(id: number, updateTrimDto: UpdateTrimDto) {
